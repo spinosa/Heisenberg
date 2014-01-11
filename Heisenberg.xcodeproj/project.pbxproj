@@ -22,6 +22,12 @@
 		910F5BBA188195C90069E380 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910F5B99188195C90069E380 /* UIKit.framework */; };
 		910F5BC2188195CA0069E380 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 910F5BC0188195CA0069E380 /* InfoPlist.strings */; };
 		910F5BC4188195CA0069E380 /* HeisenbergTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 910F5BC3188195CA0069E380 /* HeisenbergTests.m */; };
+		910F5BCE188196AF0069E380 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910F5BCD188196AF0069E380 /* CoreMedia.framework */; };
+		910F5BD0188196B30069E380 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910F5BCF188196B30069E380 /* CoreVideo.framework */; };
+		910F5BD2188196BB0069E380 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910F5BD1188196BB0069E380 /* OpenGLES.framework */; };
+		910F5BD4188196BF0069E380 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910F5BD3188196BF0069E380 /* AVFoundation.framework */; };
+		910F5BD6188196C30069E380 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910F5BD5188196C30069E380 /* QuartzCore.framework */; };
+		BE44269A913E4E85A870ECEA /* libPods-Heisenberg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E2F3AC71754500BAC7B700 /* libPods-Heisenberg.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3268683E2BE54333ACFBE2C5 /* Pods-Heisenberg.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Heisenberg.xcconfig"; path = "Pods/Pods-Heisenberg.xcconfig"; sourceTree = "<group>"; };
 		910F5B92188195C90069E380 /* Heisenberg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heisenberg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		910F5B95188195C90069E380 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		910F5B97188195C90069E380 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -55,6 +62,12 @@
 		910F5BBF188195CA0069E380 /* HeisenbergTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HeisenbergTests-Info.plist"; sourceTree = "<group>"; };
 		910F5BC1188195CA0069E380 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		910F5BC3188195CA0069E380 /* HeisenbergTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeisenbergTests.m; sourceTree = "<group>"; };
+		910F5BCD188196AF0069E380 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		910F5BCF188196B30069E380 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		910F5BD1188196BB0069E380 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		910F5BD3188196BF0069E380 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		910F5BD5188196C30069E380 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A8E2F3AC71754500BAC7B700 /* libPods-Heisenberg.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Heisenberg.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,9 +75,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				910F5BD6188196C30069E380 /* QuartzCore.framework in Frameworks */,
+				910F5BD4188196BF0069E380 /* AVFoundation.framework in Frameworks */,
+				910F5BD2188196BB0069E380 /* OpenGLES.framework in Frameworks */,
+				910F5BD0188196B30069E380 /* CoreVideo.framework in Frameworks */,
+				910F5BCE188196AF0069E380 /* CoreMedia.framework in Frameworks */,
 				910F5B98188195C90069E380 /* CoreGraphics.framework in Frameworks */,
 				910F5B9A188195C90069E380 /* UIKit.framework in Frameworks */,
 				910F5B96188195C90069E380 /* Foundation.framework in Frameworks */,
+				BE44269A913E4E85A870ECEA /* libPods-Heisenberg.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +107,7 @@
 				910F5BBD188195C90069E380 /* HeisenbergTests */,
 				910F5B94188195C90069E380 /* Frameworks */,
 				910F5B93188195C90069E380 /* Products */,
+				3268683E2BE54333ACFBE2C5 /* Pods-Heisenberg.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,10 +123,16 @@
 		910F5B94188195C90069E380 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				910F5BD5188196C30069E380 /* QuartzCore.framework */,
+				910F5BD3188196BF0069E380 /* AVFoundation.framework */,
+				910F5BD1188196BB0069E380 /* OpenGLES.framework */,
+				910F5BCF188196B30069E380 /* CoreVideo.framework */,
+				910F5BCD188196AF0069E380 /* CoreMedia.framework */,
 				910F5B95188195C90069E380 /* Foundation.framework */,
 				910F5B97188195C90069E380 /* CoreGraphics.framework */,
 				910F5B99188195C90069E380 /* UIKit.framework */,
 				910F5BB7188195C90069E380 /* XCTest.framework */,
+				A8E2F3AC71754500BAC7B700 /* libPods-Heisenberg.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -162,9 +188,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 910F5BC7188195CA0069E380 /* Build configuration list for PBXNativeTarget "Heisenberg" */;
 			buildPhases = (
+				00DD6632AC664EED8BDF4DD7 /* Check Pods Manifest.lock */,
 				910F5B8E188195C90069E380 /* Sources */,
 				910F5B8F188195C90069E380 /* Frameworks */,
 				910F5B90188195C90069E380 /* Resources */,
+				16BA620AFEF34219B4962BEF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -248,6 +276,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00DD6632AC664EED8BDF4DD7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		16BA620AFEF34219B4962BEF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Heisenberg-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		910F5B8E188195C90069E380 /* Sources */ = {
@@ -390,6 +451,7 @@
 		};
 		910F5BC8188195CA0069E380 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3268683E2BE54333ACFBE2C5 /* Pods-Heisenberg.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -403,6 +465,7 @@
 		};
 		910F5BC9188195CA0069E380 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3268683E2BE54333ACFBE2C5 /* Pods-Heisenberg.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -475,6 +538,7 @@
 				910F5BC9188195CA0069E380 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		910F5BCA188195CA0069E380 /* Build configuration list for PBXNativeTarget "HeisenbergTests" */ = {
 			isa = XCConfigurationList;
@@ -483,6 +547,7 @@
 				910F5BCC188195CA0069E380 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
