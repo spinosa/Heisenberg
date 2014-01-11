@@ -1,0 +1,490 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		910F5B96188195C90069E380 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910F5B95188195C90069E380 /* Foundation.framework */; };
+		910F5B98188195C90069E380 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910F5B97188195C90069E380 /* CoreGraphics.framework */; };
+		910F5B9A188195C90069E380 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910F5B99188195C90069E380 /* UIKit.framework */; };
+		910F5BA0188195C90069E380 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 910F5B9E188195C90069E380 /* InfoPlist.strings */; };
+		910F5BA2188195C90069E380 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 910F5BA1188195C90069E380 /* main.m */; };
+		910F5BA6188195C90069E380 /* HBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 910F5BA5188195C90069E380 /* HBAppDelegate.m */; };
+		910F5BA9188195C90069E380 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 910F5BA7188195C90069E380 /* Main_iPhone.storyboard */; };
+		910F5BAC188195C90069E380 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 910F5BAA188195C90069E380 /* Main_iPad.storyboard */; };
+		910F5BAF188195C90069E380 /* HBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910F5BAE188195C90069E380 /* HBViewController.m */; };
+		910F5BB1188195C90069E380 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 910F5BB0188195C90069E380 /* Images.xcassets */; };
+		910F5BB8188195C90069E380 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910F5BB7188195C90069E380 /* XCTest.framework */; };
+		910F5BB9188195C90069E380 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910F5B95188195C90069E380 /* Foundation.framework */; };
+		910F5BBA188195C90069E380 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910F5B99188195C90069E380 /* UIKit.framework */; };
+		910F5BC2188195CA0069E380 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 910F5BC0188195CA0069E380 /* InfoPlist.strings */; };
+		910F5BC4188195CA0069E380 /* HeisenbergTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 910F5BC3188195CA0069E380 /* HeisenbergTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		910F5BBB188195C90069E380 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 910F5B8A188195C90069E380 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 910F5B91188195C90069E380;
+			remoteInfo = Heisenberg;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		910F5B92188195C90069E380 /* Heisenberg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heisenberg.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		910F5B95188195C90069E380 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		910F5B97188195C90069E380 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		910F5B99188195C90069E380 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		910F5B9D188195C90069E380 /* Heisenberg-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Heisenberg-Info.plist"; sourceTree = "<group>"; };
+		910F5B9F188195C90069E380 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		910F5BA1188195C90069E380 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		910F5BA3188195C90069E380 /* Heisenberg-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Heisenberg-Prefix.pch"; sourceTree = "<group>"; };
+		910F5BA4188195C90069E380 /* HBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBAppDelegate.h; sourceTree = "<group>"; };
+		910F5BA5188195C90069E380 /* HBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBAppDelegate.m; sourceTree = "<group>"; };
+		910F5BA8188195C90069E380 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		910F5BAB188195C90069E380 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		910F5BAD188195C90069E380 /* HBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBViewController.h; sourceTree = "<group>"; };
+		910F5BAE188195C90069E380 /* HBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBViewController.m; sourceTree = "<group>"; };
+		910F5BB0188195C90069E380 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		910F5BB6188195C90069E380 /* HeisenbergTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeisenbergTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		910F5BB7188195C90069E380 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		910F5BBF188195CA0069E380 /* HeisenbergTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HeisenbergTests-Info.plist"; sourceTree = "<group>"; };
+		910F5BC1188195CA0069E380 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		910F5BC3188195CA0069E380 /* HeisenbergTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeisenbergTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		910F5B8F188195C90069E380 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				910F5B98188195C90069E380 /* CoreGraphics.framework in Frameworks */,
+				910F5B9A188195C90069E380 /* UIKit.framework in Frameworks */,
+				910F5B96188195C90069E380 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		910F5BB3188195C90069E380 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				910F5BB8188195C90069E380 /* XCTest.framework in Frameworks */,
+				910F5BBA188195C90069E380 /* UIKit.framework in Frameworks */,
+				910F5BB9188195C90069E380 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		910F5B89188195C90069E380 = {
+			isa = PBXGroup;
+			children = (
+				910F5B9B188195C90069E380 /* Heisenberg */,
+				910F5BBD188195C90069E380 /* HeisenbergTests */,
+				910F5B94188195C90069E380 /* Frameworks */,
+				910F5B93188195C90069E380 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		910F5B93188195C90069E380 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				910F5B92188195C90069E380 /* Heisenberg.app */,
+				910F5BB6188195C90069E380 /* HeisenbergTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		910F5B94188195C90069E380 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				910F5B95188195C90069E380 /* Foundation.framework */,
+				910F5B97188195C90069E380 /* CoreGraphics.framework */,
+				910F5B99188195C90069E380 /* UIKit.framework */,
+				910F5BB7188195C90069E380 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		910F5B9B188195C90069E380 /* Heisenberg */ = {
+			isa = PBXGroup;
+			children = (
+				910F5BA4188195C90069E380 /* HBAppDelegate.h */,
+				910F5BA5188195C90069E380 /* HBAppDelegate.m */,
+				910F5BA7188195C90069E380 /* Main_iPhone.storyboard */,
+				910F5BAA188195C90069E380 /* Main_iPad.storyboard */,
+				910F5BAD188195C90069E380 /* HBViewController.h */,
+				910F5BAE188195C90069E380 /* HBViewController.m */,
+				910F5BB0188195C90069E380 /* Images.xcassets */,
+				910F5B9C188195C90069E380 /* Supporting Files */,
+			);
+			path = Heisenberg;
+			sourceTree = "<group>";
+		};
+		910F5B9C188195C90069E380 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				910F5B9D188195C90069E380 /* Heisenberg-Info.plist */,
+				910F5B9E188195C90069E380 /* InfoPlist.strings */,
+				910F5BA1188195C90069E380 /* main.m */,
+				910F5BA3188195C90069E380 /* Heisenberg-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		910F5BBD188195C90069E380 /* HeisenbergTests */ = {
+			isa = PBXGroup;
+			children = (
+				910F5BC3188195CA0069E380 /* HeisenbergTests.m */,
+				910F5BBE188195CA0069E380 /* Supporting Files */,
+			);
+			path = HeisenbergTests;
+			sourceTree = "<group>";
+		};
+		910F5BBE188195CA0069E380 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				910F5BBF188195CA0069E380 /* HeisenbergTests-Info.plist */,
+				910F5BC0188195CA0069E380 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		910F5B91188195C90069E380 /* Heisenberg */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 910F5BC7188195CA0069E380 /* Build configuration list for PBXNativeTarget "Heisenberg" */;
+			buildPhases = (
+				910F5B8E188195C90069E380 /* Sources */,
+				910F5B8F188195C90069E380 /* Frameworks */,
+				910F5B90188195C90069E380 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Heisenberg;
+			productName = Heisenberg;
+			productReference = 910F5B92188195C90069E380 /* Heisenberg.app */;
+			productType = "com.apple.product-type.application";
+		};
+		910F5BB5188195C90069E380 /* HeisenbergTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 910F5BCA188195CA0069E380 /* Build configuration list for PBXNativeTarget "HeisenbergTests" */;
+			buildPhases = (
+				910F5BB2188195C90069E380 /* Sources */,
+				910F5BB3188195C90069E380 /* Frameworks */,
+				910F5BB4188195C90069E380 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				910F5BBC188195C90069E380 /* PBXTargetDependency */,
+			);
+			name = HeisenbergTests;
+			productName = HeisenbergTests;
+			productReference = 910F5BB6188195C90069E380 /* HeisenbergTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		910F5B8A188195C90069E380 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = HB;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Dan Spinosa";
+				TargetAttributes = {
+					910F5BB5188195C90069E380 = {
+						TestTargetID = 910F5B91188195C90069E380;
+					};
+				};
+			};
+			buildConfigurationList = 910F5B8D188195C90069E380 /* Build configuration list for PBXProject "Heisenberg" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 910F5B89188195C90069E380;
+			productRefGroup = 910F5B93188195C90069E380 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				910F5B91188195C90069E380 /* Heisenberg */,
+				910F5BB5188195C90069E380 /* HeisenbergTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		910F5B90188195C90069E380 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				910F5BAC188195C90069E380 /* Main_iPad.storyboard in Resources */,
+				910F5BB1188195C90069E380 /* Images.xcassets in Resources */,
+				910F5BA9188195C90069E380 /* Main_iPhone.storyboard in Resources */,
+				910F5BA0188195C90069E380 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		910F5BB4188195C90069E380 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				910F5BC2188195CA0069E380 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		910F5B8E188195C90069E380 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				910F5BAF188195C90069E380 /* HBViewController.m in Sources */,
+				910F5BA6188195C90069E380 /* HBAppDelegate.m in Sources */,
+				910F5BA2188195C90069E380 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		910F5BB2188195C90069E380 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				910F5BC4188195CA0069E380 /* HeisenbergTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		910F5BBC188195C90069E380 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 910F5B91188195C90069E380 /* Heisenberg */;
+			targetProxy = 910F5BBB188195C90069E380 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		910F5B9E188195C90069E380 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				910F5B9F188195C90069E380 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		910F5BA7188195C90069E380 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				910F5BA8188195C90069E380 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		910F5BAA188195C90069E380 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				910F5BAB188195C90069E380 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		910F5BC0188195CA0069E380 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				910F5BC1188195CA0069E380 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		910F5BC5188195CA0069E380 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		910F5BC6188195CA0069E380 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		910F5BC8188195CA0069E380 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Heisenberg/Heisenberg-Prefix.pch";
+				INFOPLIST_FILE = "Heisenberg/Heisenberg-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		910F5BC9188195CA0069E380 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Heisenberg/Heisenberg-Prefix.pch";
+				INFOPLIST_FILE = "Heisenberg/Heisenberg-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		910F5BCB188195CA0069E380 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Heisenberg.app/Heisenberg";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Heisenberg/Heisenberg-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "HeisenbergTests/HeisenbergTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		910F5BCC188195CA0069E380 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Heisenberg.app/Heisenberg";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Heisenberg/Heisenberg-Prefix.pch";
+				INFOPLIST_FILE = "HeisenbergTests/HeisenbergTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		910F5B8D188195C90069E380 /* Build configuration list for PBXProject "Heisenberg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				910F5BC5188195CA0069E380 /* Debug */,
+				910F5BC6188195CA0069E380 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		910F5BC7188195CA0069E380 /* Build configuration list for PBXNativeTarget "Heisenberg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				910F5BC8188195CA0069E380 /* Debug */,
+				910F5BC9188195CA0069E380 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		910F5BCA188195CA0069E380 /* Build configuration list for PBXNativeTarget "HeisenbergTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				910F5BCB188195CA0069E380 /* Debug */,
+				910F5BCC188195CA0069E380 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 910F5B8A188195C90069E380 /* Project object */;
+}
