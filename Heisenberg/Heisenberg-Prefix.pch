@@ -14,3 +14,28 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+#ifdef DEBUG
+#   define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#   define DLog(...)
+#endif
+
+#ifdef DEBUG
+#   define DSAssert(expression, ...) \
+do { \
+if(!(expression)) { \
+NSString *__DSAssert_temp_string = [NSString stringWithFormat: @"Assertion failure: %s in %s on line %s:%d. %@", #expression, __func__, __FILE__, __LINE__, [NSString stringWithFormat: @"" __VA_ARGS__]]; \
+NSLog(@"%@", __DSAssert_temp_string); \
+abort(); \
+} \
+} while(0)
+#else
+#   define DSAssert(expression, ...) \
+do { \
+if(!(expression)) { \
+NSString *__DSAssert_temp_string = [NSString stringWithFormat: @"Assertion failure: %s in %s on line %s:%d. %@", #expression, __func__, __FILE__, __LINE__, [NSString stringWithFormat: @"" __VA_ARGS__]]; \
+@throw([NSException exceptionWithName:@"DSAssertException" reason:[NSString stringWithFormat:@"%@", __DSAssert_temp_string] userInfo:nil]); \
+} \
+} while(0)
+#endif
