@@ -56,7 +56,8 @@
                                 <rect key="frame" x="131" y="509" width="58" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="59" id="uXb-zz-rfi"/>
+                                    <constraint firstAttribute="height" constant="59" id="JMn-9q-lXF"/>
+                                    <constraint firstAttribute="width" constant="58" id="lMu-O3-NVo"/>
                                 </constraints>
                                 <state key="normal" title="Take Pic">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -68,12 +69,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="y1q-z0-iAX" firstAttribute="centerX" secondItem="wxb-Ff-VEP" secondAttribute="centerX" id="0yt-pj-oEb"/>
-                            <constraint firstItem="wxb-Ff-VEP" firstAttribute="top" secondItem="cqA-ft-SqD" secondAttribute="top" id="MLS-Jw-eKT"/>
-                            <constraint firstItem="jL5-0k-5hw" firstAttribute="top" secondItem="wxb-Ff-VEP" secondAttribute="bottom" id="p2t-S7-0uZ"/>
-                            <constraint firstItem="wxb-Ff-VEP" firstAttribute="leading" secondItem="cqA-ft-SqD" secondAttribute="leading" id="pHm-wC-6af"/>
-                            <constraint firstItem="jL5-0k-5hw" firstAttribute="top" secondItem="y1q-z0-iAX" secondAttribute="bottom" id="rDw-Zj-8MD"/>
-                            <constraint firstAttribute="trailing" secondItem="wxb-Ff-VEP" secondAttribute="trailing" id="u57-ef-DOu"/>
+                            <constraint firstItem="jL5-0k-5hw" firstAttribute="top" secondItem="wxb-Ff-VEP" secondAttribute="bottom" id="7ej-pA-kQm"/>
+                            <constraint firstItem="jL5-0k-5hw" firstAttribute="top" secondItem="y1q-z0-iAX" secondAttribute="bottom" id="8Wr-p8-hHp"/>
+                            <constraint firstItem="wxb-Ff-VEP" firstAttribute="leading" secondItem="cqA-ft-SqD" secondAttribute="leading" id="AP0-F0-tpN"/>
+                            <constraint firstAttribute="centerX" secondItem="y1q-z0-iAX" secondAttribute="centerX" id="BAZ-CQ-bTk"/>
+                            <constraint firstAttribute="trailing" secondItem="wxb-Ff-VEP" secondAttribute="trailing" id="iWa-bB-mBE"/>
+                            <constraint firstItem="wxb-Ff-VEP" firstAttribute="top" secondItem="cqA-ft-SqD" secondAttribute="top" id="ion-Y5-hTw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Camera" id="qCW-JE-Jng"/>

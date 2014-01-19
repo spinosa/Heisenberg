@@ -29,7 +29,7 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
     NSMutableDictionary *_onscreenFaceViews;
     
     //face detection metadata transforms
-    CGFloat _xScale, _xOffset, _yScale, _yOffset, _widthScale, _heightScale;
+    CGFloat _xScale, _xOffset, _yScale, _yOffset;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -54,7 +54,7 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
 
     // 1) Final output view
     _filteredVideoView = [[GPUImageView alloc] initWithFrame:self.cameraPreviewView.bounds];
-    _filteredVideoView.fillMode = kGPUImageFillModePreserveAspectRatio;
+    _filteredVideoView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
     
     [self.cameraPreviewView addSubview:_filteredVideoView];
     _filteredVideoView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -255,19 +255,42 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
 {
     CGRect faceBounds = faceObject.bounds;
     
-    //TODO: make this generic, instead of just handling the back camera in portrait
-    
-    // 1) adjust bounds for input settings
-    // portrait/rear cam/flipped => rotate 90deg CW + flip the bounding box horizontally
-    faceBounds = CGRectMake((1.0-faceBounds.origin.y) - faceBounds.size.height,
-                            faceBounds.origin.x,
-                            faceBounds.size.height,
-                            faceBounds.size.width);
-    
+    //NB: this is only built for back camera right now
+    switch (self.interfaceOrientation) {
+        case UIInterfaceOrientationPortrait:
+        {
+            //rear cam is rotated 90deg CCW
+            faceBounds = CGRectMake((1.0-faceBounds.origin.y) - faceBounds.size.height,
+                                    faceBounds.origin.x,
+                                    faceBounds.size.height,
+                                    faceBounds.size.width);
+        }; break;
+        case UIInterfaceOrientationPortraitUpsideDown:
+        {
+            //rear cam is rotated 90deg CW
+            faceBounds = CGRectMake(faceBounds.origin.y,
+                                    (1.0-faceBounds.origin.x) - faceBounds.size.width,
+                                    faceBounds.size.height,
+                                    faceBounds.size.width);
+        }; break;
+        case UIInterfaceOrientationLandscapeLeft:
+        {
+            //rear cam is upside down
+            faceBounds = CGRectMake((1.0-faceBounds.origin.x) - faceBounds.size.width,
+                                    (1.0-faceBounds.origin.y) - faceBounds.size.height,
+                                    faceBounds.size.width,
+                                    faceBounds.size.height);
+        }; break;
+        case UIInterfaceOrientationLandscapeRight:
+        {
+            //natural orientation of rear camera; do nothing
+        }; break;
+    }
+
     return CGRectMake((faceBounds.origin.x * _xScale) + _xOffset,
                       (faceBounds.origin.y * _yScale) + _yOffset,
-                      faceBounds.size.width * _widthScale,
-                      faceBounds.size.height * _heightScale);
+                      faceBounds.size.width * _xScale,
+                      faceBounds.size.height * _yScale);
     
     //OPTIMIZE: wrap all this into one precomputed matrix multiplication
 }
@@ -275,7 +298,6 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
 //this must be called when view changes size, device rotates, or camera changes
 - (void)updateMetadataTransform
 {
-    CGFloat widthScaling, heightScaling;
     CGSize currentViewSize = _filteredVideoView.bounds.size;
     CGRect insetRect = AVMakeRectWithAspectRatioInsideRect(_filteredVideoView.inputImageSize, _filteredVideoView.bounds);
     
@@ -283,39 +305,27 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
     {
         case kGPUImageFillModeStretch:
         {
-            widthScaling = 1.0;
-            heightScaling = 1.0;
-            
-            _xScale = currentViewSize.width * widthScaling;
+            _xScale = currentViewSize.width;
             _xOffset = 0;
-            _yScale = currentViewSize.height * heightScaling;
+            _yScale = currentViewSize.height;
             _yOffset = 0;
-            _widthScale = insetRect.size.width * widthScaling;
-            _heightScale = insetRect.size.height * heightScaling;
         }; break;
         case kGPUImageFillModePreserveAspectRatio:
         {
-            widthScaling = insetRect.size.width / currentViewSize.width;
-            heightScaling = insetRect.size.height / currentViewSize.height;
-            
-            _xScale = currentViewSize.width * widthScaling;
+            _xScale = insetRect.size.width;
             _xOffset = insetRect.origin.x;
-            _yScale = currentViewSize.height * heightScaling;
+            _yScale = insetRect.size.height;
             _yOffset = insetRect.origin.y;
-            _widthScale = insetRect.size.width * widthScaling;
-            _heightScale = insetRect.size.height * heightScaling;
         }; break;
         case kGPUImageFillModePreserveAspectRatioAndFill:
         {
-            widthScaling = currentViewSize.height / insetRect.size.height;
-            heightScaling = currentViewSize.width / insetRect.size.width;
+            CGFloat widthScaling = currentViewSize.height / insetRect.size.height;
+            CGFloat heightScaling = currentViewSize.width / insetRect.size.width;
             
             _xScale = currentViewSize.width * widthScaling;
             _xOffset = -(_xScale-currentViewSize.width)/2.f;
             _yScale = currentViewSize.height * heightScaling;
             _yOffset = -(_yScale-currentViewSize.height)/2.f;
-            _widthScale = insetRect.size.width * widthScaling;
-            _heightScale = insetRect.size.height * heightScaling;
         }; break;
     }
 }
