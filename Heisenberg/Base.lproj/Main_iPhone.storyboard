@@ -78,6 +78,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Camera" id="qCW-JE-Jng"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="cameraPreviewView" destination="wxb-Ff-VEP" id="GzO-Yi-8kh"/>
                         <segue destination="0Uv-wJ-XLC" kind="push" identifier="EditImage" id="RTg-1o-OP8"/>

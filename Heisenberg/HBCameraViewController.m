@@ -50,8 +50,43 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	_onscreenFaceViews = [NSMutableDictionary new];
 
+	_onscreenFaceViews = [NSMutableDictionary new];
+    [self initCamera];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    // face detection metadata preparedness
+    [self updateMetadataTransform];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
+
+#pragma mark - Status Bar
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
+{
+    return UIStatusBarAnimationFade;
+}
+
+#pragma mark - Camera Setup
+
+- (void)initCamera
+{
     // 1) Final output view
     _filteredVideoView = [[GPUImageView alloc] initWithFrame:self.cameraPreviewView.bounds];
     _filteredVideoView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
@@ -65,21 +100,15 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
     _stillCamera = [[GPUImageStillCamera alloc] init];
     _stillCamera.outputImageOrientation = self.interfaceOrientation;
     [self setupFaceDetection];
-
+    
     // 3) No-filter image pipeline
     _unprocessedFilter = [[GPUImageCropFilter alloc] initWithCropRegion:CGRectMake(0, 0, 1.0, 1.0)];
     [_stillCamera addTarget:_unprocessedFilter];
     [_stillCamera startCameraCapture];
     
     // 4) initial filter
-//    [self setCameraPreviewFilter:[[GPUImageToonFilter alloc] init]];
+    //    [self setCameraPreviewFilter:[[GPUImageToonFilter alloc] init]];
     [self setCameraPreviewFilter:[[GPUImageCropFilter alloc] initWithCropRegion:CGRectMake(0, 0, 1.0, 1.0)]];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    // 5) face detection metadata preparedness
-    [self updateMetadataTransform];
 }
 
 - (void)setCameraPreviewFilter:(GPUImageFilter *)newFilter
