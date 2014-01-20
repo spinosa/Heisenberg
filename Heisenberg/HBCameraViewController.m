@@ -72,8 +72,8 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
     [_stillCamera startCameraCapture];
     
     // 4) initial filter
-    [self setCameraPreviewFilter:[[GPUImageToonFilter alloc] init]];
-//    [self setCameraPreviewFilter:[[GPUImageCropFilter alloc] initWithCropRegion:CGRectMake(0, 0, 1.0, 1.0)]];
+//    [self setCameraPreviewFilter:[[GPUImageToonFilter alloc] init]];
+    [self setCameraPreviewFilter:[[GPUImageCropFilter alloc] initWithCropRegion:CGRectMake(0, 0, 1.0, 1.0)]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -196,12 +196,17 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
         //We're not using a standard AVCaptureVideoPreviewLayer, need to replicate the functionality of
         // -transformedMetadataObjectForMetadataObject: to transform the raw metadata and make it relative
         // to our preview view...
-        CGRect adjustedFaceBounds;// = [self adjustedFrameFor:face];
+        CGRect adjustedFaceFrame;
         CGFloat adjustedYaw, adjustedRoll;
-        [self forFace:face transformedBounds:&adjustedFaceBounds yaw:&adjustedYaw roll:&adjustedRoll];
+        [self forFace:face transformedBounds:&adjustedFaceFrame yaw:&adjustedYaw roll:&adjustedRoll];
         
-        //TODO: take yaw + roll into account when drawing actual hats
-        faceView.frame = adjustedFaceBounds;
+        //TODO: take yaw into account as well?
+        faceView.bounds = CGRectMake(0, 0, adjustedFaceFrame.size.width, adjustedFaceFrame.size.height);
+        faceView.center = CGPointMake(adjustedFaceFrame.origin.x + adjustedFaceFrame.size.width/2.f,
+                                      adjustedFaceFrame.origin.y + adjustedFaceFrame.size.height/2.f);
+        if (face.hasRollAngle) {
+            faceView.transform = CGAffineTransformMakeRotation(adjustedRoll*(M_PI/180.f));
+        }
     }
     
     // 2) remove faces not detected
@@ -244,22 +249,18 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
 
 #pragma mark - Metadata Transform Maths
 
+//NB: yaw not currently transformed
 - (void)forFace:(AVMetadataFaceObject *)face transformedBounds:(CGRect *)bounds yaw:(CGFloat *)yaw roll:(CGFloat *)roll
 {
-    *bounds = [self adjustedFrameFor:face];
-    
-    //TODO: adjust YAW + ROLL
-}
-
-- (CGRect)adjustedFrameFor:(AVMetadataFaceObject *)faceObject
-{
-    CGRect faceBounds = faceObject.bounds;
+    CGRect faceBounds = face.bounds;
+    CGFloat deviceRoll;
     
     //NB: this is only built for back camera right now
     switch (self.interfaceOrientation) {
         case UIInterfaceOrientationPortrait:
         {
             //rear cam is rotated 90deg CCW
+            deviceRoll = 270;
             faceBounds = CGRectMake((1.0-faceBounds.origin.y) - faceBounds.size.height,
                                     faceBounds.origin.x,
                                     faceBounds.size.height,
@@ -268,6 +269,7 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
         case UIInterfaceOrientationPortraitUpsideDown:
         {
             //rear cam is rotated 90deg CW
+            deviceRoll = 90;
             faceBounds = CGRectMake(faceBounds.origin.y,
                                     (1.0-faceBounds.origin.x) - faceBounds.size.width,
                                     faceBounds.size.height,
@@ -276,6 +278,7 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
         case UIInterfaceOrientationLandscapeLeft:
         {
             //rear cam is upside down
+            deviceRoll = 180;
             faceBounds = CGRectMake((1.0-faceBounds.origin.x) - faceBounds.size.width,
                                     (1.0-faceBounds.origin.y) - faceBounds.size.height,
                                     faceBounds.size.width,
@@ -283,16 +286,32 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
         }; break;
         case UIInterfaceOrientationLandscapeRight:
         {
-            //natural orientation of rear camera; do nothing
+            //natural orientation of rear camera
+            deviceRoll = 0;
         }; break;
     }
-
-    return CGRectMake((faceBounds.origin.x * _xScale) + _xOffset,
-                      (faceBounds.origin.y * _yScale) + _yOffset,
-                      faceBounds.size.width * _xScale,
-                      faceBounds.size.height * _yScale);
     
-    //OPTIMIZE: wrap all this into one precomputed matrix multiplication
+    //OPTIMIZE: wrap this and calculations above into one precomputed matrix multiplication
+    *bounds = CGRectMake((faceBounds.origin.x * _xScale) + _xOffset,
+                         (faceBounds.origin.y * _yScale) + _yOffset,
+                         faceBounds.size.width * _xScale,
+                         faceBounds.size.height * _yScale);
+    
+    //roll is side-to-side tilt of face
+    if (face.hasRollAngle){
+        CGFloat adjustedRoll = face.rollAngle - deviceRoll;
+        if (adjustedRoll > 180.f) {
+            adjustedRoll = adjustedRoll - 360.f;
+        }
+        *roll = adjustedRoll;
+    }
+    
+    //yaw is rotation about vertical axis
+//    if (face.hasYawAngle) {
+//        DLog(@"YAW:  %f", face.yawAngle);
+//    } else {
+//        DLog(@"NO-YAW");
+//    }
 }
 
 //this must be called when view changes size, device rotates, or camera changes
