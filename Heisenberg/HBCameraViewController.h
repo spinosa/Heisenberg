@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface HBCameraViewController : UIViewController <AVCaptureMetadataOutputObjectsDelegate>
+@interface HBCameraViewController : UIViewController <AVCaptureMetadataOutputObjectsDelegate, UIScrollViewDelegate>
 
 @end

@@ -14,14 +14,15 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
 
 @interface HBCameraViewController ()
 @property (weak, nonatomic) IBOutlet UIView *cameraPreviewView;
+@property (weak, nonatomic) IBOutlet UIScrollView *filterScrollView;
 
 @end
 
 @implementation HBCameraViewController {
     //filtered input
     GPUImageStillCamera *_stillCamera;
-    GPUImageFilter *_curFilter, *_unprocessedFilter;
-    GPUImageView *_filteredVideoView;
+    GPUImageFilter *_curFilter, *_enteringFilter, *_unprocessedFilter;
+    GPUImageView *_curFilteredCameraView, *_enteringFilteredCameraView;
     UIImage *_unprocessedImage;
     
     //face detection
@@ -87,14 +88,10 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
 
 - (void)initCamera
 {
-    // 1) Final output view
-    _filteredVideoView = [[GPUImageView alloc] initWithFrame:self.cameraPreviewView.bounds];
-    _filteredVideoView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
-    
-    [self.cameraPreviewView addSubview:_filteredVideoView];
-    _filteredVideoView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.cameraPreviewView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[preview]|" options:0 metrics:nil views:@{@"preview":_filteredVideoView}]];
-    [self.cameraPreviewView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[preview]|" options:0 metrics:nil views:@{@"preview":_filteredVideoView}]];
+    // 1) Final output views
+    _curFilteredCameraView = [self createFullSizedGPUImageView];
+    _enteringFilteredCameraView = [self createFullSizedGPUImageView];
+    [self updateMasksForContentOffset:self.filterScrollView.contentOffset];
     
     // 2) Setup the camera input
     _stillCamera = [[GPUImageStillCamera alloc] init];
@@ -106,37 +103,66 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
     [_stillCamera addTarget:_unprocessedFilter];
     [_stillCamera startCameraCapture];
     
-    // 4) initial filter
-    //    [self setCameraPreviewFilter:[[GPUImageToonFilter alloc] init]];
-    [self setCameraPreviewFilter:[[GPUImageCropFilter alloc] initWithCropRegion:CGRectMake(0, 0, 1.0, 1.0)]];
+    // 4) initial filters
+    _curFilter = [[GPUImageCropFilter alloc] initWithCropRegion:CGRectMake(0, 0, 1.0, 1.0)];
+    [self setCameraFilter:_curFilter forView:_curFilteredCameraView replacingFilter:nil];
+    _enteringFilter = [[GPUImageToonFilter alloc] init];
+    [self setCameraFilter:_enteringFilter forView:_enteringFilteredCameraView replacingFilter:nil];
+    
+    //   filter changing scroll view
+    self.filterScrollView.contentSize = CGSizeMake(self.view.bounds.size.width*2, self.view.bounds.size.height);
+    [self.filterScrollView setContentOffset:CGPointMake(0, 0)];
+    self.filterScrollView.delegate = self;
 }
 
-- (void)setCameraPreviewFilter:(GPUImageFilter *)newFilter
+- (GPUImageView *)createFullSizedGPUImageView
 {
-    if (_curFilter) {
+    GPUImageView *v = [[GPUImageView alloc] initWithFrame:self.cameraPreviewView.bounds];
+    v.fillMode = kGPUImageFillModePreserveAspectRatioAndFill;
+    
+    [self.cameraPreviewView addSubview:v];
+    v.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.cameraPreviewView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view":v}]];
+    [self.cameraPreviewView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view":v}]];
+    
+    CALayer *mask = ({
+        CALayer *m = [CALayer layer];
+        m.backgroundColor = [UIColor blackColor].CGColor;
+        m.frame = self.cameraPreviewView.frame;
+        m;
+    });
+    v.layer.mask = mask;
+    
+    return v;
+}
+
+- (void)setCameraFilter:(GPUImageFilter *)newFilter forView:(GPUImageView *)view replacingFilter:(GPUImageFilter *)filterToBeReplaced
+{
+    if (filterToBeReplaced) {
         [_stillCamera pauseCameraCapture];
-        [_curFilter removeAllTargets];
-        [_stillCamera removeTarget:_curFilter];
+        [filterToBeReplaced removeAllTargets];
+        [_stillCamera removeTarget:filterToBeReplaced];
     }
     
     // OPTIMIZE: we can -forceProcessingAtSize: or -forceProcessingAtSizeRespectingAspectRatio for the filter view
     // see https://github.com/BradLarson/GPUImage/issues/751
     // but it's not a simple drop in... the resulting processed image has to play with our aspect
     // ratio calculations throughout the app
-    _curFilter = newFilter;
-    [_stillCamera addTarget:_curFilter];
-    [_curFilter addTarget:_filteredVideoView];
+    [_stillCamera addTarget:newFilter];
+    [newFilter addTarget:view];
 
     [_stillCamera resumeCameraCapture];
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                 duration:(NSTimeInterval)duration {
+    //TODO: update scroll view and masks
     _stillCamera.outputImageOrientation = toInterfaceOrientation;
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
+    //TODO: update scroll view and masks
     [self updateMetadataTransform];
 }
 
@@ -197,7 +223,7 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
 	NSMutableSet* seen = [NSMutableSet setWithCapacity:faces.count];
     
     // Explicitly begin display updates, disabling implicity actions
-    // This is from the WWDC sample code, not sure why it's needed/a good idea
+    // This is from the WWDC sample code, improves performance by eliminating animations
 	[CATransaction begin];
 	[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
     
@@ -218,7 +244,7 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
                 v;
             });
             _onscreenFaceViews[faceID] = faceView;
-            [_filteredVideoView addSubview:faceView];
+            [self.cameraPreviewView addSubview:faceView];
         }
      
         //The AVMetadataFaceObject is relative to the raw camera input.
@@ -346,10 +372,10 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
 //this must be called when view changes size, device rotates, or camera changes
 - (void)updateMetadataTransform
 {
-    CGSize currentViewSize = _filteredVideoView.bounds.size;
-    CGRect insetRect = AVMakeRectWithAspectRatioInsideRect(_filteredVideoView.inputImageSize, _filteredVideoView.bounds);
+    CGSize currentViewSize = _curFilteredCameraView.bounds.size;
+    CGRect insetRect = AVMakeRectWithAspectRatioInsideRect(_curFilteredCameraView.inputImageSize, _curFilteredCameraView.bounds);
     
-    switch(_filteredVideoView.fillMode)
+    switch(_curFilteredCameraView.fillMode)
     {
         case kGPUImageFillModeStretch:
         {
@@ -376,6 +402,26 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
             _yOffset = -(_yScale-currentViewSize.height)/2.f;
         }; break;
     }
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self updateMasksForContentOffset:scrollView.contentOffset];
+}
+
+- (void)updateMasksForContentOffset:(CGPoint)contentOffset
+{
+    [CATransaction begin];
+	[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+    
+    //masks are all black; black means "show what's behind me"
+    //current mask is fully covering view, entering mask is moving in
+    _curFilteredCameraView.layer.mask.frame = CGRectMake(-contentOffset.x, 0, self.cameraPreviewView.bounds.size.width, self.cameraPreviewView.bounds.size.height);
+    _enteringFilteredCameraView.layer.mask.frame = CGRectMake(self.cameraPreviewView.bounds.size.width - contentOffset.x, 0, self.cameraPreviewView.bounds.size.width, self.cameraPreviewView.bounds.size.height);
+    
+    [CATransaction commit];
 }
 
 @end
