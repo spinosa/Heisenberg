@@ -9,6 +9,7 @@
 #import "HBCameraViewController.h"
 #import <GPUImage.h>
 #import "HBEditImageViewController.h"
+#import "HBFaceView.h"
 
 static NSString *kEditImageSegueIdentifier = @"EditImage";
 
@@ -233,11 +234,10 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
         [unseen removeObject:faceID];
         [seen addObject:faceID];
         
-        //TODO: use some real views with hats and glasses!
-        UIView *faceView = _onscreenFaceViews[faceID];
+        HBFaceView *faceView = _onscreenFaceViews[faceID];
         if (!faceView) {
             faceView = ({
-                UIView *v = [UIView new];
+                HBFaceView *v = [[NSBundle mainBundle] loadNibNamed:@"HBFaceView" owner:nil options:nil][0];
                 v.layer.cornerRadius = 3.0f;
                 v.layer.borderWidth = 2.0f;
                 v.layer.borderColor = [UIColor redColor].CGColor;

@@ -31,6 +31,10 @@
 		910F5BDD18819ACB0069E380 /* HBCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910F5BDB18819ACB0069E380 /* HBCameraViewController.m */; };
 		910F5BE01881A1A80069E380 /* HBEditImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910F5BDF1881A1A80069E380 /* HBEditImageViewController.m */; };
 		910F5BE11881A1A80069E380 /* HBEditImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910F5BDF1881A1A80069E380 /* HBEditImageViewController.m */; };
+		91BC2160189415EB00D75B4E /* HBFaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91BC215F189415EB00D75B4E /* HBFaceView.xib */; };
+		91BC2161189415EB00D75B4E /* HBFaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91BC215F189415EB00D75B4E /* HBFaceView.xib */; };
+		91BC21641894166400D75B4E /* HBFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91BC21631894166400D75B4E /* HBFaceView.m */; };
+		91BC21651894166400D75B4E /* HBFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91BC21631894166400D75B4E /* HBFaceView.m */; };
 		BE44269A913E4E85A870ECEA /* libPods-Heisenberg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E2F3AC71754500BAC7B700 /* libPods-Heisenberg.a */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +79,9 @@
 		910F5BDB18819ACB0069E380 /* HBCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBCameraViewController.m; sourceTree = "<group>"; };
 		910F5BDE1881A1A80069E380 /* HBEditImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBEditImageViewController.h; sourceTree = "<group>"; };
 		910F5BDF1881A1A80069E380 /* HBEditImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBEditImageViewController.m; sourceTree = "<group>"; };
+		91BC215F189415EB00D75B4E /* HBFaceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HBFaceView.xib; sourceTree = "<group>"; };
+		91BC21621894166400D75B4E /* HBFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBFaceView.h; sourceTree = "<group>"; };
+		91BC21631894166400D75B4E /* HBFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBFaceView.m; sourceTree = "<group>"; };
 		A8E2F3AC71754500BAC7B700 /* libPods-Heisenberg.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Heisenberg.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -213,6 +220,9 @@
 				910F5BB0188195C90069E380 /* Images.xcassets */,
 				910F5BA7188195C90069E380 /* Main_iPhone.storyboard */,
 				910F5BAA188195C90069E380 /* Main_iPad.storyboard */,
+				91BC215F189415EB00D75B4E /* HBFaceView.xib */,
+				91BC21621894166400D75B4E /* HBFaceView.h */,
+				91BC21631894166400D75B4E /* HBFaceView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -302,6 +312,7 @@
 				910F5BAC188195C90069E380 /* Main_iPad.storyboard in Resources */,
 				910F5BB1188195C90069E380 /* Images.xcassets in Resources */,
 				910F5BA9188195C90069E380 /* Main_iPhone.storyboard in Resources */,
+				91BC2160189415EB00D75B4E /* HBFaceView.xib in Resources */,
 				910F5BA0188195C90069E380 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				910F5BC2188195CA0069E380 /* InfoPlist.strings in Resources */,
+				91BC2161189415EB00D75B4E /* HBFaceView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +371,7 @@
 				910F5BA6188195C90069E380 /* HBAppDelegate.m in Sources */,
 				910F5BA2188195C90069E380 /* main.m in Sources */,
 				910F5BE01881A1A80069E380 /* HBEditImageViewController.m in Sources */,
+				91BC21641894166400D75B4E /* HBFaceView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +382,7 @@
 				910F5BC4188195CA0069E380 /* HeisenbergTests.m in Sources */,
 				910F5BDD18819ACB0069E380 /* HBCameraViewController.m in Sources */,
 				910F5BE11881A1A80069E380 /* HBEditImageViewController.m in Sources */,
+				91BC21651894166400D75B4E /* HBFaceView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
