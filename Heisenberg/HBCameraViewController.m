@@ -48,6 +48,11 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)shouldAutorotate
+{
+    return YES;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

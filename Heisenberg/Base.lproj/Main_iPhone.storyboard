@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Welcome View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="HBViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="HBWelcomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eeT-CS-VCm"/>
                         <viewControllerLayoutGuide type="bottom" id="dmR-Jx-DqE"/>
@@ -16,22 +16,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yrd-h7-tPR">
-                                <rect key="frame" x="131" y="269" width="58" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Proceed">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="black_hat_large" translatesAutoresizingMaskIntoConstraints="NO" id="XP4-hB-h4a">
+                                <rect key="frame" x="40" y="155" width="241" height="105"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <gestureRecognizers/>
                                 <connections>
-                                    <segue destination="kuM-5a-O1o" kind="push" id="GBh-Tv-aTV"/>
+                                    <outletCollection property="gestureRecognizers" destination="4ln-hZ-zM5" appends="YES" id="sdf-5N-fgY"/>
                                 </connections>
-                            </button>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="black_glasses_large" translatesAutoresizingMaskIntoConstraints="NO" id="8jG-ha-Eqk">
+                                <rect key="frame" x="82" y="260" width="156" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="black_goatee_large" translatesAutoresizingMaskIntoConstraints="NO" id="aO1-hT-5UB">
+                                <rect key="frame" x="111" y="333" width="98" height="85"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="B5a-jH-Z0k"/>
+                    <connections>
+                        <outlet property="glasses" destination="8jG-ha-Eqk" id="mib-HE-SgN"/>
+                        <outlet property="goatee" destination="aO1-hT-5UB" id="rTQ-0v-zKS"/>
+                        <outlet property="hat" destination="XP4-hB-h4a" id="POV-FT-rlw"/>
+                        <segue destination="kuM-5a-O1o" kind="push" identifier="proceedSegue" id="f70-R2-wB4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="4ln-hZ-zM5" userLabel="hat Pan Gesture Recognizer">
+                    <connections>
+                        <action selector="hatDidPan:" destination="vXZ-lx-hvc" id="Yla-Oc-gng"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="675" y="-21"/>
         </scene>
@@ -126,10 +144,10 @@
             </objects>
             <point key="canvasLocation" x="1587" y="-21"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Orientation From Children Navigation View Controller-->
         <scene sceneID="Fnh-lT-Aj9">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SG2-Zd-Y67" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SG2-Zd-Y67" customClass="HBOrientationFromChildrenNavigationViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5cG-m3-hQj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -145,6 +163,11 @@
             <point key="canvasLocation" x="216" y="-21"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="black_glasses_large" width="355" height="101"/>
+        <image name="black_goatee_large" width="217" height="177"/>
+        <image name="black_hat_large" width="527" height="211"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

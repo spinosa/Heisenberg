@@ -15,7 +15,7 @@
 		910F5BA6188195C90069E380 /* HBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 910F5BA5188195C90069E380 /* HBAppDelegate.m */; };
 		910F5BA9188195C90069E380 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 910F5BA7188195C90069E380 /* Main_iPhone.storyboard */; };
 		910F5BAC188195C90069E380 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 910F5BAA188195C90069E380 /* Main_iPad.storyboard */; };
-		910F5BAF188195C90069E380 /* HBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910F5BAE188195C90069E380 /* HBViewController.m */; };
+		910F5BAF188195C90069E380 /* HBWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910F5BAE188195C90069E380 /* HBWelcomeViewController.m */; };
 		910F5BB1188195C90069E380 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 910F5BB0188195C90069E380 /* Images.xcassets */; };
 		910F5BB8188195C90069E380 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910F5BB7188195C90069E380 /* XCTest.framework */; };
 		910F5BB9188195C90069E380 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910F5B95188195C90069E380 /* Foundation.framework */; };
@@ -35,6 +35,8 @@
 		91BC2161189415EB00D75B4E /* HBFaceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91BC215F189415EB00D75B4E /* HBFaceView.xib */; };
 		91BC21641894166400D75B4E /* HBFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91BC21631894166400D75B4E /* HBFaceView.m */; };
 		91BC21651894166400D75B4E /* HBFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91BC21631894166400D75B4E /* HBFaceView.m */; };
+		91BC216918944F5000D75B4E /* HBOrientationFromChildrenNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91BC216818944F5000D75B4E /* HBOrientationFromChildrenNavigationViewController.m */; };
+		91BC216A18944F5000D75B4E /* HBOrientationFromChildrenNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91BC216818944F5000D75B4E /* HBOrientationFromChildrenNavigationViewController.m */; };
 		BE44269A913E4E85A870ECEA /* libPods-Heisenberg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8E2F3AC71754500BAC7B700 /* libPods-Heisenberg.a */; };
 /* End PBXBuildFile section */
 
@@ -62,8 +64,8 @@
 		910F5BA5188195C90069E380 /* HBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBAppDelegate.m; sourceTree = "<group>"; };
 		910F5BA8188195C90069E380 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		910F5BAB188195C90069E380 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		910F5BAD188195C90069E380 /* HBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBViewController.h; sourceTree = "<group>"; };
-		910F5BAE188195C90069E380 /* HBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBViewController.m; sourceTree = "<group>"; };
+		910F5BAD188195C90069E380 /* HBWelcomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBWelcomeViewController.h; sourceTree = "<group>"; };
+		910F5BAE188195C90069E380 /* HBWelcomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBWelcomeViewController.m; sourceTree = "<group>"; };
 		910F5BB0188195C90069E380 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		910F5BB6188195C90069E380 /* HeisenbergTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeisenbergTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		910F5BB7188195C90069E380 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -82,6 +84,8 @@
 		91BC215F189415EB00D75B4E /* HBFaceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HBFaceView.xib; sourceTree = "<group>"; };
 		91BC21621894166400D75B4E /* HBFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBFaceView.h; sourceTree = "<group>"; };
 		91BC21631894166400D75B4E /* HBFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBFaceView.m; sourceTree = "<group>"; };
+		91BC216718944F5000D75B4E /* HBOrientationFromChildrenNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBOrientationFromChildrenNavigationViewController.h; sourceTree = "<group>"; };
+		91BC216818944F5000D75B4E /* HBOrientationFromChildrenNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBOrientationFromChildrenNavigationViewController.m; sourceTree = "<group>"; };
 		A8E2F3AC71754500BAC7B700 /* libPods-Heisenberg.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Heisenberg.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -204,12 +208,14 @@
 		910F5BD8188198DB0069E380 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				910F5BAD188195C90069E380 /* HBViewController.h */,
-				910F5BAE188195C90069E380 /* HBViewController.m */,
+				910F5BAD188195C90069E380 /* HBWelcomeViewController.h */,
+				910F5BAE188195C90069E380 /* HBWelcomeViewController.m */,
 				910F5BDA18819ACB0069E380 /* HBCameraViewController.h */,
 				910F5BDB18819ACB0069E380 /* HBCameraViewController.m */,
 				910F5BDE1881A1A80069E380 /* HBEditImageViewController.h */,
 				910F5BDF1881A1A80069E380 /* HBEditImageViewController.m */,
+				91BC216718944F5000D75B4E /* HBOrientationFromChildrenNavigationViewController.h */,
+				91BC216818944F5000D75B4E /* HBOrientationFromChildrenNavigationViewController.m */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -366,9 +372,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				910F5BAF188195C90069E380 /* HBViewController.m in Sources */,
+				910F5BAF188195C90069E380 /* HBWelcomeViewController.m in Sources */,
 				910F5BDC18819ACB0069E380 /* HBCameraViewController.m in Sources */,
 				910F5BA6188195C90069E380 /* HBAppDelegate.m in Sources */,
+				91BC216918944F5000D75B4E /* HBOrientationFromChildrenNavigationViewController.m in Sources */,
 				910F5BA2188195C90069E380 /* main.m in Sources */,
 				910F5BE01881A1A80069E380 /* HBEditImageViewController.m in Sources */,
 				91BC21641894166400D75B4E /* HBFaceView.m in Sources */,
@@ -379,6 +386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91BC216A18944F5000D75B4E /* HBOrientationFromChildrenNavigationViewController.m in Sources */,
 				910F5BC4188195CA0069E380 /* HeisenbergTests.m in Sources */,
 				910F5BDD18819ACB0069E380 /* HBCameraViewController.m in Sources */,
 				910F5BE11881A1A80069E380 /* HBEditImageViewController.m in Sources */,
