@@ -22,6 +22,8 @@
     UIAttachmentBehavior *_hatAttachment;
     
     NSUInteger panAttempts;
+    
+    NSTimer *_shakeTheHatTimer;
 }
 
 - (void)viewDidLoad
@@ -43,8 +45,10 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    self.hat.center = CGPointMake(arc4random_uniform(self.view.bounds.size.width), arc4random_uniform(self.view.bounds.size.height));
+    self.hat.center = CGPointMake(self.view.bounds.size.width, 0);
     [self.animator addBehavior:_hatSnap];
+    
+    _shakeTheHatTimer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(shakeTheHat) userInfo:nil repeats:YES];
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -62,6 +66,7 @@
     CGPoint velocity = [panner velocityInView:self.view];
     
     if (panner.state == UIGestureRecognizerStateBegan) {
+        [_shakeTheHatTimer invalidate];
         panAttempts++;
         [self.animator removeBehavior:_hatSnap];
         
@@ -94,7 +99,7 @@
             hatPush.magnitude = MAX((velocity.x + velocity.y)/1000.f, 50);
             [self.animator addBehavior:hatPush];
             //fade to black while dynamics operate
-            [UIView animateWithDuration:1.25 animations:^{
+            [UIView animateWithDuration:1.0 animations:^{
                 self.view.backgroundColor = [UIColor blackColor];
             } completion:^(BOOL finished) {
                 [self performSegueWithIdentifier:@"proceedSegue" sender:self];
@@ -106,6 +111,15 @@
             [self.animator updateItemUsingCurrentState:panner.view];
         }
     }
+}
+
+- (void)shakeTheHat
+{
+    //snap is still engaged, just need to push it a bit
+    UIPushBehavior *hatPush = [[UIPushBehavior alloc] initWithItems:@[self.hat] mode:UIPushBehaviorModeInstantaneous];
+    hatPush.pushDirection = CGVectorMake(arc4random_uniform(3.0)-1.0, arc4random_uniform(3.0)-1.0);
+    hatPush.magnitude = 75.0;
+    [self.animator addBehavior:hatPush];
 }
 
 @end
