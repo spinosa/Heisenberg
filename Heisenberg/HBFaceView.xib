@@ -18,12 +18,20 @@
                             <rect key="frame" x="0.0" y="-100" width="359" height="385"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="black_glasses_large" translatesAutoresizingMaskIntoConstraints="NO" id="7LZ-eB-PEd" userLabel="glasses">
+                            <rect key="frame" x="-1" y="86" width="360" height="385"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="centerX" secondItem="R2F-6m-w5j" secondAttribute="centerX" id="1aC-Zt-iEo"/>
+                        <constraint firstItem="7LZ-eB-PEd" firstAttribute="width" secondItem="f2U-fm-Les" secondAttribute="width" id="9PM-yV-2OV"/>
                         <constraint firstAttribute="centerY" secondItem="R2F-6m-w5j" secondAttribute="centerY" constant="100" placeholder="YES" id="Kz2-Mc-RNf"/>
                         <constraint firstAttribute="width" secondItem="R2F-6m-w5j" secondAttribute="width" placeholder="YES" id="ctS-Xj-CFj"/>
                         <constraint firstAttribute="height" secondItem="R2F-6m-w5j" secondAttribute="height" id="fE2-we-Ejp"/>
+                        <constraint firstAttribute="centerX" secondItem="7LZ-eB-PEd" secondAttribute="centerX" constant="0.5" id="hPw-hB-h1u"/>
+                        <constraint firstAttribute="centerY" secondItem="7LZ-eB-PEd" secondAttribute="centerY" constant="-85.5" placeholder="YES" id="wLi-Ak-dRs"/>
+                        <constraint firstItem="7LZ-eB-PEd" firstAttribute="height" secondItem="f2U-fm-Les" secondAttribute="height" id="wWr-vo-oDl"/>
                     </constraints>
                 </view>
             </subviews>
@@ -35,12 +43,14 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="glasses" destination="7LZ-eB-PEd" id="8bj-9V-6cV"/>
                 <outlet property="hat" destination="R2F-6m-w5j" id="luw-d4-Ggw"/>
                 <outlet property="holderView" destination="f2U-fm-Les" id="AVO-jb-26b"/>
             </connections>
         </view>
     </objects>
     <resources>
+        <image name="black_glasses_large" width="355" height="101"/>
         <image name="black_hat_large" width="527" height="211"/>
     </resources>
 </document>

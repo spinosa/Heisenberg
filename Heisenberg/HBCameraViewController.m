@@ -16,7 +16,6 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
 @interface HBCameraViewController ()
 @property (weak, nonatomic) IBOutlet UIView *cameraPreviewView;
 @property (weak, nonatomic) IBOutlet UIScrollView *filterScrollView;
-
 @end
 
 @implementation HBCameraViewController {
@@ -107,7 +106,11 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
     // 4) initial filters
     _curFilter = [[GPUImageCropFilter alloc] initWithCropRegion:CGRectMake(0, 0, 1.0, 1.0)];
     [self setCameraFilter:_curFilter forView:_curFilteredCameraView replacingFilter:nil];
-    _enteringFilter = [[GPUImageToonFilter alloc] init];
+    _enteringFilter = ({
+        GPUImageExposureFilter *f = [[GPUImageExposureFilter alloc] init];
+        f.exposure = 2.0;
+        f;
+    });
     [self setCameraFilter:_enteringFilter forView:_enteringFilteredCameraView replacingFilter:nil];
     
     //   filter changing scroll view
@@ -129,10 +132,10 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
     CALayer *mask = ({
         CALayer *m = [CALayer layer];
         m.backgroundColor = [UIColor blackColor].CGColor;
-        m.frame = self.cameraPreviewView.frame;
         m;
     });
     v.layer.mask = mask;
+    [self updateMaskForView:v andFrame:self.cameraPreviewView.frame];
     
     return v;
 }
@@ -157,13 +160,29 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                 duration:(NSTimeInterval)duration {
-    //TODO: update scroll view and masks
     _stillCamera.outputImageOrientation = toInterfaceOrientation;
+    
+    if ((UIInterfaceOrientationIsLandscape(toInterfaceOrientation) && UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) ||
+        (UIInterfaceOrientationIsPortrait(toInterfaceOrientation) && UIInterfaceOrientationIsPortrait(self.interfaceOrientation))) {
+        //--180degree rotation, no need to update scroll view and masks
+        
+    } else {
+        //--update scroll view and masks before rotation for maximum smoothiness
+        
+        //update masks for post-rotation
+        CGRect frameAfterRotation = CGRectMake(0, 0, self.cameraPreviewView.frame.size.height, self.cameraPreviewView.frame.size.width);
+        [self updateMaskForView:_curFilteredCameraView andFrame:frameAfterRotation];
+        [self updateMaskForView:_enteringFilteredCameraView andFrame:frameAfterRotation];
+        
+        //update scroll view's size and position for post-rotation
+        NSUInteger filterScrollViewPageBeforeRotation = self.filterScrollView.contentOffset.x / self.filterScrollView.bounds.size.width;
+        self.filterScrollView.contentSize = CGSizeMake(frameAfterRotation.size.width*2, frameAfterRotation.size.height);
+        [self.filterScrollView setContentOffset:CGPointMake(filterScrollViewPageBeforeRotation * frameAfterRotation.size.width, 0) animated:YES];
+    }
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    //TODO: update scroll view and masks
     [self updateMetadataTransform];
 }
 
@@ -236,13 +255,7 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
         
         HBFaceView *faceView = _onscreenFaceViews[faceID];
         if (!faceView) {
-            faceView = ({
-                HBFaceView *v = [[NSBundle mainBundle] loadNibNamed:@"HBFaceView" owner:nil options:nil][0];
-                v.layer.cornerRadius = 3.0f;
-                v.layer.borderWidth = 2.0f;
-                v.layer.borderColor = [UIColor redColor].CGColor;
-                v;
-            });
+            faceView = [[NSBundle mainBundle] loadNibNamed:@"HBFaceView" owner:nil options:nil][0];
             _onscreenFaceViews[faceID] = faceView;
             [self.cameraPreviewView addSubview:faceView];
         }
@@ -422,6 +435,13 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
     _enteringFilteredCameraView.layer.mask.frame = CGRectMake(self.cameraPreviewView.bounds.size.width - contentOffset.x, 0, self.cameraPreviewView.bounds.size.width, self.cameraPreviewView.bounds.size.height);
     
     [CATransaction commit];
+}
+
+#pragma mark - Helpers
+
+- (void)updateMaskForView:(UIView *)v andFrame:(CGRect)frame
+{
+    v.layer.mask.frame = frame;
 }
 
 @end
