@@ -178,12 +178,14 @@ static NSString *kEditImageSegueIdentifier = @"EditImage";
         NSUInteger filterScrollViewPageBeforeRotation = self.filterScrollView.contentOffset.x / self.filterScrollView.bounds.size.width;
         self.filterScrollView.contentSize = CGSizeMake(frameAfterRotation.size.width*2, frameAfterRotation.size.height);
         [self.filterScrollView setContentOffset:CGPointMake(filterScrollViewPageBeforeRotation * frameAfterRotation.size.width, 0) animated:YES];
+        [self updateMasksForContentOffset:self.filterScrollView.contentOffset];
     }
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [self updateMetadataTransform];
+    [self updateMasksForContentOffset:self.filterScrollView.contentOffset];
 }
 
 #pragma mark Face Detection Shit
